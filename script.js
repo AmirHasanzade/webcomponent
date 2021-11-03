@@ -32,13 +32,23 @@ const books = [
     { title: 'Catch 22', author: 'Joseph Heller' }
 ];
 
-const fragment = document.getElementById("book-template");
+function updateTemplate(templateId) {
+    const fragment = document.getElementById(templateId);
+    const booksList = document.getElementById("books");
+    booksList.innerHTML = "";
 
-books.forEach(book => {
-    const instance = document.importNode(fragment.content, true);
+    books.forEach(book => {
+        const instance = document.importNode(fragment.content, true);
 
-    instance.querySelector(".title").innerHTML = book.title;
-    instance.querySelector(".author").innerHTML = book.author;
+        instance.querySelector(".title").innerHTML = book.title;
+        instance.querySelector(".author").innerHTML = book.author;
 
-    document.getElementById("books").appendChild(instance);
+        booksList.appendChild(instance);
+    });
+}
+
+document.querySelector("#template-selector").addEventListener("change", event => {
+    updateTemplate(event.target.value);
 });
+
+updateTemplate("book-template-1");
