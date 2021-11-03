@@ -38,7 +38,8 @@ function updateTemplate(templateId) {
     booksList.innerHTML = "";
 
     books.forEach(book => {
-        const instance = document.importNode(fragment.content, true);
+        // fragment.content is a DocumentFragment
+        const instance = document.importNode(fragment.content, true); // DocumentFragment
 
         instance.querySelector(".title").innerHTML = book.title;
         instance.querySelector(".author").innerHTML = book.author;
